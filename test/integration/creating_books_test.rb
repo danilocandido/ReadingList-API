@@ -10,6 +10,7 @@ class CreatingBooksTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not create books with invalid data' do
-    
+    post '/books', params: { book: { title: nil, rating: 5 } }
+    assert_equal 422, response.status
   end
 end
